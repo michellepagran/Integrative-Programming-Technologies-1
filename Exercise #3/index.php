@@ -25,6 +25,7 @@ img {width: 120px; height: 120px; border-radius: 50%; object-fit: cover;}
 
 $team_members = [
     [
+        "url_id" => "asenas",
         "name" => "Shiella Mae B. Asenas",
         "role" => "Team Leader",
         "bio" => "I guide and support my team members and organize tasks to lead my group in delivering wualityy tasks...",
@@ -32,6 +33,7 @@ $team_members = [
         "image" => "Asenas" 
     ],
     [
+        "url_id" => "alcaria",
         "name" => "Janna Marie R. Alcaria",
         "role" => "UI/UX Designer",
         "bio" => "Currently, I'm working on my studies to connect multiple applications and programs of computers...",
@@ -39,6 +41,7 @@ $team_members = [
         "image" => "Alcaria" 
     ],
     [
+        "url_id" => "barba",
         "name" => "Jhon Kenneth A. Barba",
         "role" => "Researcher",
         "bio" => "I am passionate about learning and exploring different areas of technology...",
@@ -47,6 +50,7 @@ $team_members = [
 
     ],
     [
+        "url_id" => "cachila",
         "name" => "Aaron James B. Cachila",
         "role" => "Tester & Debugger",
         "bio" => "I have basic skills in HTML and CSS for creating and styling webpages...",
@@ -54,13 +58,15 @@ $team_members = [
         "image" => "Cachila" 
     ],
     [
+        "url_id" => "dela-torre",
         "name" => "Justine Dela Torre",
         "role" => "Programmer/Coder",
         "bio" => "I am a dedicated and hardworking student who is always willing to learn new things...",
-        "github" => "https://github.com",
+        "github" => "https://github.com/justinedelatorre26/INTPROG?fbclid=IwY2xjawULd-VwZG9mA2V4dG4DYWVtAjExAHNydGMGYXBwX2lkATAAAR5YUkHvbrVDlInYOlVnnz09_YW_E_N4OmPJ6R-slYH1jGmT0jedlBmpZPwOzw_aem__29Lt9YOYDiSLGxIRHroWQ",
         "image" => "Dela Torre" 
     ],
     [
+        "url_id" => "oebanda",
         "name" => "Tricia Jean Oebanda",
         "role" => "Presenter",
         "bio" => "I am a responsible and adaptable team member. I enjoy learning new things...",
@@ -68,10 +74,11 @@ $team_members = [
         "image" => "Oebanda" 
     ],
     [
+        "url_id" => "pagran",
         "name" => "Michelle Pagran",
         "role" => "File & Resource Manager",
         "bio" => "I am a reliable and dedicated team member skills in basic programming and file management...",
-        "github" => "https://github.com",
+        "github" => "https://github.com/michellepagran/Integrative-Programming-Technologies-1",
         "image" => "Pagran" 
     ]
 ];
@@ -143,6 +150,7 @@ $team_members = [
                 <p class="member-role">Role: <?php echo $member['role']; ?></p>
                 <p class="bio">Bio: "<?php echo $member['bio']; ?>"</p>
                 <a href="<?php echo $member['github']; ?>" target="_blank" class="github-link">Contact/Social (GitHub)</a>
+            <a href="profile.php?id=<?= $member['url_id'] ?>" class="github-link">View Full Profile →</a>
             </div>
         <?php endforeach; ?>
     </div>
