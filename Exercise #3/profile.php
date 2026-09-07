@@ -5,63 +5,63 @@ $team_members = [
         "role" => "Team Leader",
         "bio" => "I guide and support my team members and organize tasks to lead my group in delivering quality tasks.",
         "github" => "https://github.com/asenasshiellamaebsit-a11y",
-     "image"  => "Asenas",
-     "repos"  => "9 repos",
-     "commits"=> "66 contributions"
+        "image"  => "Asenas",
+        "repos"  => "9 repos",
+        "commits"=> "66 contributions"
     ],
     "alcaria" => [
         "name" => "Janna Marie R. Alcaria",
         "role" => "UI/UX Designer",
         "bio" => "Currently, I'm working on my studies to connect multiple applications and programs.",
         "github" => "https://github.com/alcariajannamarie/INTPROG",
-     "image"  => "Alcaria",
-     "repos"  => "INTPROG",
-     "commits"=> "4 commits"
+        "image"  => "Alcaria",
+        "repos"  => "INTPROG",
+        "commits"=> "4 commits"
     ],
     "barba" => [
         "name" => "Jhon Kenneth A. Barba",
         "role" => "Researcher",
         "bio" => "I am passionate about learning and exploring different areas of technology.",
         "github" => "https://github.com/Kennethbarba/Integrative-Programming-Technology",
-     "image"  => "Barba",
-     "repos"  => "Integrative-Programming-Technology",
-     "commits"=> "8 commits"
+        "image"  => "Barba",
+        "repos"  => "Integrative-Programming-Technology",
+        "commits"=> "8 commits"
     ],
- "cachila" => [
-     "name" => "Aaron James B. Cachila",
-     "role" => "Tester & Debugger",
-     "bio" => "I have basic skills in HTML and CSS for creating and styling webpages.",
-     "github" => "https://github.com",
-     "image"  => "Cachila",
-     "repos"  => "—",
-     "commits"=> "—"
+    "cachila" => [
+        "name" => "Aaron James B. Cachila",
+        "role" => "Tester & Debugger",
+        "bio" => "I have basic skills in HTML and CSS for creating and styling webpages.",
+        "github" => "https://github.com",
+        "image"  => "Cachila",
+        "repos"  => "—",
+        "commits"=> "—"
  ],
- "dela-torre" => [
-     "name" => "Justine Dela Torre",
-     "role" => "Programmer/Coder",
-     "bio" => "I am a dedicated and hardworking student who is always willing to learn new things.",
-     "github" => "https://github.com/justinedelatorre26/INTPROG?fbclid=IwY2xjawULd-VwZG9mA2V4dG4DYWVtAjExAHNydGMGYXBwX2lkATAAAR5YUkHvbrVDlInYOlVnnz09_YW_E_N4OmPJ6R-slYH1jGmT0jedlBmpZPwOzw_aem__29Lt9YOYDiSLGxIRHroWQ",
-     "image"  => "Dela Torre",
-     "repos"  => "—",
-     "commits"=> "—"
+    "dela-torre" => [
+        "name" => "Justine Dela Torre",
+        "role" => "Programmer/Coder",
+        "bio" => "I am a dedicated and hardworking student who is always willing to learn new things.",
+        "github" => "https://github.com/justinedelatorre26/INTPROG?fbclid=IwY2xjawULd-VwZG9mA2V4dG4DYWVtAjExAHNydGMGYXBwX2lkATAAAR5YUkHvbrVDlInYOlVnnz09_YW_E_N4OmPJ6R-slYH1jGmT0jedlBmpZPwOzw_aem__29Lt9YOYDiSLGxIRHroWQ",
+        "image"  => "Dela Torre",
+        "repos"  => "—",
+        "commits"=> "—"
  ],
     "oebanda" => [
         "name" => "Tricia Jean Oebanda",
         "role" => "Presenter",
         "bio" => "I am a responsible and adaptable team member.",
         "github" => "https://github.com/oebandatriciajeanbsit-dotcom",
-     "image"  => "Oebanda",
-     "repos"  => "2 repos",
-     "commits"=> "21 contributions"
+        "image"  => "Oebanda",
+        "repos"  => "2 repos",
+        "commits"=> "21 contributions"
     ],
- "pagran" => [
-     "name" => "Michelle Pagran",
-     "role" => "File & Resource Manager",
-     "bio" => "I am a reliable and dedicated team member with skills in basic programming and file management.",
-     "github" => "https://github.com/michellepagran/Integrative-Programming-Technologies-1",
-     "image"  => "Pagran",
-     "repos"  => "—",
-     "commits"=> "—"
+    "pagran" => [
+        "name" => "Michelle Pagran",
+        "role" => "File & Resource Manager",
+        "bio" => "I am a reliable and dedicated team member with skills in basic programming and file management.",
+        "github" => "https://github.com/michellepagran/Integrative-Programming-Technologies-1",
+        "image"  => "Pagran",
+        "repos"  => "—",
+        "commits"=> "—"
  ]
 ];
 
