@@ -1,0 +1,24 @@
+Guide Questions 
+Answer the following in a text file named fetch-answers.txt: 
+1. What are the main differences between XMLHttpRequest and Fetch API? 
+   - XMLHttpRequest: It’s the older way of doing things. You have to write more code to make it work. 
+     It uses something called onreadystatechange and callbacks, so it can be hard to read. 
+     It can work while waiting for a result or keep running other things at the same time.
+   - Fetch API: It’s newer and much simpler to write. It uses Promises with .then() instead of messy callbacks. 
+     It works in the background automatically. It gives you a response object with easy methods like .json() and .text() to read data. 
+     You don’t need to check readyState — you just use .then() when it works and .catch() when something goes wrong.
+
+2. Why is the Fetch API considered more modern and readable? 
+   - Its code is short and easy to follow, with clear steps using .then() instead of layers of nested functions. 
+     It’s built on Promises, which is what everyone uses in JavaScript now. 
+     And keeps success and error separate: .then() for good results and .catch() for problems, so you know exactly where to look. 
+     It also has built-in tools like .json() that turn data into something you can use right away, and it works the same way as other modern JavaScript tools we learn today.
+
+3. What is the purpose of the .then() and .catch() methods in Fetch? 
+   - .then() — This runs when your request works well. You can link several .then() together to do things step by step: first check the reply, then read the data, then show it on the page.
+     .catch() — This runs when something goes wrong. It could be a bad internet connection, a wrong address, or a problem from the server. It catches all errors in one spot so you don’t have to check every single step.
+
+4. What happens when you send a POST request to the placeholder API?
+   - The API receives the information you sent, such as title, body, and userId. 
+     But it doesn’t actually save that data permanently because it’s just a fake test service. 
+    It sends back a reply to confirm it received your entry and gives it an ID number, usually 101, just like what a real website would do when creating something new and assigning it its own unique ID.
