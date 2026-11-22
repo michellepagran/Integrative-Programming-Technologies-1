@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 2 - Registration</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(3, 11, 23, 0.65), rgba(3, 11, 23, 0.75)),
+                  url('bg.jpg') no-repeat center center/cover,
+                  radial-gradient(circle at 75% 65%, #0d3b66, #030b17 75%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .top-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .top-header h1 {
+      font-size: 2.1rem;
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .top-header p {
+      font-size: 0.85rem;
+      color: #a0b4cc;
+      letter-spacing: 0.5px;
+    }
+
+    .register-card {
+      background-color: rgba(11, 23, 42, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid #1e3a63;
+      border-radius: 12px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 390px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    }
+
+    .register-card h2 {
+      text-align: center;
+      color: #60a5fa;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 6px;
+      border: 1px solid #2b4c7e;
+      background-color: rgba(7, 16, 31, 0.85);
+      color: #ffffff;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+      color: #64748b;
+    }
+
+    .form-group input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-register {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-register:hover {
+      opacity: 0.92;
+    }
+
+    .btn-register:active {
+      transform: scale(0.99);
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .login-link a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .error-msg {
+      color: #f87171;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-bottom: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-header">
+    <h1>GROUP 2</h1>
+    <p>Integrative Programming Activity</p>
+  </div>
+
+  <div class="register-card">
+    <h2>CREATE ACCOUNT</h2>
+    <div id="errorMsg" class="error-msg"></div>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+      </div>
+
+      <button type="submit" class="btn-register">REGISTER</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login here</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        errorMsg.textContent = "Passwords do not match!";
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      errorMsg.style.display = "none";
+
+      const user = { fullName, username, password };
+      localStorage.setItem('group2User', JSON.stringify(user));
+
+      alert("Registration successful! Redirecting...");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>
