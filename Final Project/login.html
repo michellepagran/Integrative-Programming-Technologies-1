@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 2 - Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(3, 11, 23, 0.65), rgba(3, 11, 23, 0.75)),
+                  url('bg.jpg') no-repeat center center/cover,
+                  radial-gradient(circle at 75% 65%, #0d3b66, #030b17 75%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .top-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .top-header h1 {
+      font-size: 2.1rem;
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .top-header p {
+      font-size: 0.85rem;
+      color: #a0b4cc;
+      letter-spacing: 0.5px;
+    }
+
+    .login-card {
+      background-color: rgba(11, 23, 42, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid #1e3a63;
+      border-radius: 12px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 390px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    }
+
+    .login-card h2 {
+      text-align: center;
+      color: #60a5fa;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 6px;
+      border: 1px solid #2b4c7e;
+      background-color: rgba(7, 16, 31, 0.85);
+      color: #ffffff;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+      color: #64748b;
+    }
+
+    .form-group input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-login:hover {
+      opacity: 0.92;
+    }
+
+    .btn-login:active {
+      transform: scale(0.99);
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .register-link a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    .error-msg {
+      color: #f87171;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-bottom: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-header">
+    <h1>GROUP 2</h1>
+    <p>Integrative Programming Activity</p>
+  </div>
+
+  <div class="login-card">
+    <h2>LOGIN</h2>
+    <div id="errorMsg" class="error-msg"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+
+      <button type="submit" class="btn-login">LOGIN</button>
+    </form>
+
+    <div class="register-link">
+      Don't have an account? <a href="register.html">Register here</a>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const usernameInput = document.getElementById('username').value.trim();
+      const passwordInput = document.getElementById('password').value;
+
+      const savedUserJSON = localStorage.getItem('group2User');
+
+      if (!savedUserJSON) {
+        errorMsg.textContent = "No account found. Please register first!";
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      const savedUser = JSON.parse(savedUserJSON);
+
+      if (usernameInput === savedUser.username && passwordInput === savedUser.password) {
+        errorMsg.style.display = "none";
+        alert("Login successful! Welcome, " + savedUser.fullName + "!");
+        window.location.href = "index.html";
+      } else {
+        errorMsg.textContent = "Invalid username or password.";
+        errorMsg.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>
