@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 2 - Integrative Programming Activity</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(3, 11, 23, 0.65), rgba(3, 11, 23, 0.78)),
+                  url('bg.png') no-repeat center center/cover fixed,
+                  radial-gradient(circle at 75% 65%, #0d3b66, #030b17 75%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .top-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .top-header h1 {
+      font-size: 2.1rem;
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .top-header p {
+      font-size: 0.85rem;
+      color: #a0b4cc;
+      letter-spacing: 0.5px;
+    }
+
+    .glass-card {
+      background-color: rgba(11, 23, 42, 0.84);
+      backdrop-filter: blur(10px);
+      border: 1px solid #1e3a63;
+      border-radius: 12px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 390px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    }
+
+    .glass-card h2 {
+      text-align: center;
+      color: #60a5fa;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 6px;
+      border: 1px solid #2b4c7e;
+      background-color: rgba(7, 16, 31, 0.85);
+      color: #ffffff;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+      color: #64748b;
+    }
+
+    .form-group input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+    }
+
+    .btn-secondary {
+      padding: 10px 20px;
+      border: 1px solid #3b82f6;
+      border-radius: 6px;
+      background: rgba(37, 99, 235, 0.15);
+      color: #60a5fa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.3);
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .switch-link a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .switch-link a:hover {
+      text-decoration: underline;
+    }
+
+    .error-msg {
+      color: #f87171;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(8, 18, 34, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1e3a63;
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-brand {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #60a5fa;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-link {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+      background-color: rgba(59, 130, 246, 0.2);
+    }
+
+    .with-navbar {
+      padding-top: 90px !important;
+    }
+
+    @media (max-width: 650px) {
+      .navbar {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .nav-links {
+        gap: 10px;
+      }
+    }
+
+    /* WELCOME DASHBOARD */
+    .dashboard-card {
+      max-width: 540px;
+      text-align: center;
+      padding: 40px 32px;
+    }
+
+    .dashboard-card .group-tag {
+      color: #60a5fa;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .dashboard-card .welcome-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .dashboard-card .welcome-sub {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+    }
+
+    .dashboard-card .welcome-desc {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+
+    .dashboard-card .username-display {
+      font-size: 0.85rem;
+      color: #60a5fa;
+      margin-bottom: 26px;
+    }
+
+    .dashboard-card .username-display span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .dashboard-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-logout {
+      padding: 10px 26px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+    
+    #profileSection {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 36px;
+      width: 100%;
+    }
+
+    .profile-header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    #searchInput {
+      width: 100%;
+      max-width: 340px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid #2b4c7e;
+      background-color: rgba(13, 27, 48, 0.85);
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .member-card {
+      background-color: rgba(12, 26, 48, 0.88);
+      border: 1px solid #1e3a63;
+      border-radius: 10px;
+      padding: 28px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #ffffff;
+      border: 2px solid #2b4c7e;
+      margin-bottom: 18px;
+    }
+
+    .name {
+      color: #4ea8de;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .bio {
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .contact-link {
+      color: #6482a8;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loginSection">
+    <div class="top-header">
+      <h1>GROUP 2</h1>
+      <p>Integrative Programming Activity</p>
+    </div>
+
+    <div class="glass-card">
+      <h2>LOGIN</h2>
+      <div id="loginError" class="error-msg"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" placeholder="Enter username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" required>
+        </div>
+
+        <button type="submit" class="btn-primary">LOGIN</button>
+      </form>
+
+      <div class="switch-link">
+        Don't have an account? <a href="#" id="goToRegister">Register here</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="registerSection" class="hidden">
+    <div class="top-header">
+      <h1>GROUP 2</h1>
+      <p>Integrative Programming Activity</p>
+    </div>
+
+    <div class="glass-card">
+      <h2>CREATE ACCOUNT</h2>
+      <div id="registerError" class="error-msg"></div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="regFullName">Full Name</label>
+          <input type="text" id="regFullName" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regUsername">Username</label>
+          <input type="text" id="regUsername" placeholder="Enter username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" placeholder="Enter password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regConfirmPassword">Confirm Password</label>
+          <input type="password" id="regConfirmPassword" placeholder="Confirm password" required>
+        </div>
+
+        <button type="submit" class="btn-primary">REGISTER</button>
+      </form>
+
+      <div class="switch-link">
+        Already have an account? <a href="#" id="goToLogin">Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <nav id="topNavbar" class="navbar hidden">
+    <div class="nav-brand">GROUP 2</div>
+    <div class="nav-links">
+      <button type="button" class="nav-link active" id="navDash">Dashboard</button>
+      <button type="button" class="nav-link" id="navProfile">Group Profile</button>
+      <button type="button" class="nav-link" id="navAbout">About Us</button>
+    </div>
+    <button type="button" class="btn-logout" id="navLogout">LOGOUT</button>
+  </nav>
+
+  <div id="dashboardSection" class="hidden" style="width: 100%; display: flex; justify-content: center;">
+    <div class="glass-card dashboard-card">
+      <div class="group-tag">GROUP 2</div>
+      <div class="welcome-title">Welcome, <span id="dashFullName">User</span>!</div>
+      <div class="welcome-sub">Welcome Groupmates!</div>
+      <div class="welcome-desc">You have successfully logged into our Integrative Programming activity</div>
+      <div class="username-display">Username: <span id="dashUsername">user</span></div>
+
+      <div class="dashboard-actions">
+        <button type="button" class="btn-secondary" id="goToProfile">VIEW GROUP 2 PROFILE</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="aboutSection" class="hidden" style="width: 100%; display: flex; justify-content: center;">
+    <div class="glass-card dashboard-card" style="max-width: 620px; text-align: left;">
+      <div class="group-tag" style="text-align: center;">ABOUT US</div>
+      <h2 style="margin-bottom: 16px;">Integrative Programming Activity</h2>
+      <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 14px;">
+       We are Group 2, a dedicated team of student developers collaborating on our Integrative Programming activity. Combining our skills in leadership, UI/UX design, research, coding, debugging, presentation, and resource management, we work together to build functional, user-friendly web applications. Through teamwork and continuous learning, our goal is to turn ideas into reliable digital solutions while growing our technical skills together.
+      </p>
+      <div style="text-align: center;">
+        <button type="button" class="btn-secondary" id="aboutToProfile">MEET THE TEAM</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="profileSection" class="hidden">
+
+    <div class="profile-header">
+      <h1>GROUP 2 PROFILE</h1>
+      <input type="text" id="searchInput" placeholder="Search by name or role">
+    </div>
+
+    <div class="grid-container" id="profileGrid">
+      <div class="member-card">
+        <img src="Asenas.jpg" alt="Shiella Mae B. Asenas" class="avatar">
+        <div class="name">Shiella Mae B. Asenas</div>
+        <div class="role">Role: Team Leader</div>
+        <p class="bio">Bio: "I guide and support my team members and organize tasks to lead my group in delivering quality tasks..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+
+      <div class="member-card">
+        <img src="Alcaria.jpg" alt="Janna Marie R. Alcaria" class="avatar">
+        <div class="name">Janna Marie R. Alcaria</div>
+        <div class="role">Role: UI/UX Designer</div>
+        <p class="bio">Bio: "Currently, I'm working on my studies to connect multiple applications and programs of computers..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+
+      <div class="member-card">
+        <img src="Barba.jpg" alt="Jhon Kenneth A. Barba" class="avatar">
+        <div class="name">Jhon Kenneth A. Barba</div>
+        <div class="role">Role: Researcher</div>
+        <p class="bio">Bio: "I am passionate about learning and exploring different areas of technology..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+
+      <div class="member-card">
+        <img src="Cachila.jpg" alt="Aaron James B. Cachila" class="avatar">
+        <div class="name">Aaron James B. Cachila</div>
+        <div class="role">Role: Tester & Debugger</div>
+        <p class="bio">Bio: "I have basic skills in HTML and CSS for creating and styling webpages..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+
+      <div class="member-card">
+        <img src="Dela Torre.jpg" alt="Justine Dela Torre" class="avatar">
+        <div class="name">Justine Dela Torre</div>
+        <div class="role">Role: Programmer/Coder</div>
+        <p class="bio">Bio: "I am a dedicated and hardworking student who is always willing to learn new things..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+
+      <div class="member-card">
+        <img src="Oebanda.jpg" alt="Tricia Jean Oebanda" class="avatar">
+        <div class="name">Tricia Jean Oebanda</div>
+        <div class="role">Role: Presenter</div>
+        <p class="bio">Bio: "I am a responsible and adaptable team member. I enjoy learning new things..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+
+      <div class="member-card">
+        <img src="Pagran.jpg" alt="Michelle Pagran" class="avatar">
+        <div class="name">Michelle Pagran</div>
+        <div class="role">Role: File & Resource Manager</div>
+        <p class="bio">Bio: "I am a reliable and dedicated team member skills in basic programming and file management..."</p>
+        <a href="#" class="contact-link">Contact/Social (GitHub)</a>
+      </div>
+    </div>
+  </div>
+
+   <script>
+    const sections = ['loginSection', 'registerSection', 'dashboardSection', 'aboutSection', 'profileSection'];
+    const topNavbar = document.getElementById('topNavbar');
+
+    function setActiveNav(navId) {
+      document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+      if (navId) document.getElementById(navId).classList.add('active');
+    }
+
+    function showScreen(screenId) {
+      sections.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(screenId).classList.remove('hidden');
+
+      if (screenId === 'loginSection' || screenId === 'registerSection') {
+        topNavbar.classList.add('hidden');
+        document.body.classList.remove('with-navbar');
+      } else {
+        topNavbar.classList.remove('hidden');
+        document.body.classList.add('with-navbar');
+      }
+
+      if (screenId === 'dashboardSection') setActiveNav('navDash');
+      if (screenId === 'profileSection') setActiveNav('navProfile');
+      if (screenId === 'aboutSection') setActiveNav('navAbout');
+    }
+
+    function enterDashboard(user) {
+      document.getElementById('dashFullName').textContent = user.fullName;
+      document.getElementById('dashUsername').textContent = user.username;
+      showScreen('dashboardSection');
+    }
+
+    function logout() {
+      document.getElementById('loginForm').reset();
+      showScreen('loginSection');
+    }
+
+    document.getElementById('goToRegister').addEventListener('click', function(e) {
+      e.preventDefault();
+      showScreen('registerSection');
+    });
+
+    document.getElementById('goToLogin').addEventListener('click', function(e) {
+      e.preventDefault();
+      showScreen('loginSection');
+    });
+
+    document.getElementById('navDash').addEventListener('click', () => showScreen('dashboardSection'));
+    document.getElementById('navProfile').addEventListener('click', () => showScreen('profileSection'));
+    document.getElementById('navAbout').addEventListener('click', () => showScreen('aboutSection'));
+    document.getElementById('goToProfile').addEventListener('click', () => showScreen('profileSection'));
+    document.getElementById('aboutToProfile').addEventListener('click', () => showScreen('profileSection'));
+    document.getElementById('navLogout').addEventListener('click', logout);
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fullName = document.getElementById('regFullName').value.trim();
+      const username = document.getElementById('regUsername').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+      const registerError = document.getElementById('registerError');
+
+      if (password !== confirmPassword) {
+        registerError.textContent = "Passwords do not match!";
+        registerError.style.display = "block";
+        return;
+      }
+
+      registerError.style.display = "none";
+      const newUser = { fullName, username, password };
+      localStorage.setItem('group2User', JSON.stringify(newUser));
+      this.reset();
+      enterDashboard(newUser);
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const usernameInput = document.getElementById('loginUsername').value.trim();
+      const passwordInput = document.getElementById('loginPassword').value;
+      const loginError = document.getElementById('loginError');
+
+      const savedUserJSON = localStorage.getItem('group2User');
+      if (!savedUserJSON) {
+        loginError.textContent = "No account found. Please register first!";
+        loginError.style.display = "block";
+        return;
+      }
+
+      const savedUser = JSON.parse(savedUserJSON);
+      if (usernameInput === savedUser.username && passwordInput === savedUser.password) {
+        loginError.style.display = "none";
+        enterDashboard(savedUser);
+      } else {
+        loginError.textContent = "Invalid username or password.";
+        loginError.style.display = "block";
+      }
+    });
+
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      document.querySelectorAll('.member-card').forEach(card => {
+        const name = card.querySelector('.name').textContent.toLowerCase();
+        const role = card.querySelector('.role').textContent.toLowerCase();
+        card.style.display = (name.includes(query) || role.includes(query)) ? 'flex' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
